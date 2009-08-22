@@ -132,6 +132,16 @@ describe "page attachment tags" do
     page.should render(%{<r:attachment:each extensions="png|txt"><r:filename/></r:attachment:each>}).as("rails.pngfoo.txt")
   end
   
+  it "should render if attachments" do
+    page.should render(%{<r:if_attachments>content</r:if_attachments>}).as("content")
+  end 
+  it "should only render if has the minimum attachments" do
+    page.should render(%{<r:if_attachments min_count="3">content</r:if_attachments>}).as("")
+  end
+  it "should only render if has the minimum attachments with the specified extension" do
+    page.should render(%{<r:if_attachments min_count="1" extensions="png">content</r:if_attachments>}).as("content")
+  end
+  
   
   private
 
