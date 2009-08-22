@@ -12,19 +12,19 @@ class PageAttachmentsDataset < Dataset::Base
     end
     
     def page_attachment_params(attributes={})
+      page = pages(:home)
       { 
         :size => File.join(File.dirname(__FILE__), '/files/', attributes[:filename]).size,
-        :position => position(attributes[:filename]),
-        :page => pages(:home),
+        :page => page,
+        :position => next_position(page),
         :created_by => users(:admin)
       }.merge(attributes)
     end
     
     private
       
-      @@positions = Hash.new(0)
-      def position(filename)
-        @@positions[filename] += 1
+      def next_position(page)
+        (page.attachments.maximum(:position) || 0) + 1
       end
   end
   

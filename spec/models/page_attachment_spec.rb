@@ -4,6 +4,9 @@ describe PageAttachment do
   dataset :pages, :page_attachments
   
   it "should change position when first attachment is moved lower" do
+    img = page_attachments(:rails_png)
+    txt = page_attachments(:foo_txt)
+    
     img.position.should == 1
     txt.position.should == 2
     img.move_lower
@@ -12,10 +15,4 @@ describe PageAttachment do
     txt.position.should == 1
   end
   
-  def img
-    page_attachments(:rails_png)
-  end
-  def txt
-    page_attachments(:foo_txt)
-  end
 end
