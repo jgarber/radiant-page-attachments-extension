@@ -15,7 +15,7 @@ class PageAttachmentsDataset < Dataset::Base
       { 
         :size => File.join(File.dirname(__FILE__), '/files/', attributes[:filename]).size,
         :position => position(attributes[:filename]),
-        :page => pages(:first),
+        :page => pages(:home),
         :created_by => users(:admin)
       }.merge(attributes)
     end

@@ -37,11 +37,4 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
           assert_equal 1, txt.position
   end
 
-  def test_attachment_inheritance
-    @page = pages(:documentation)
-    img = page_attachments(:rails_png)
-    txt = page_attachments(:foo_txt)
-    assert_renders img.public_filename, '<r:attachment:url name="rails.png" />', '/documentation'
-    assert_renders txt.public_filename, '<r:attachment:url name="foo.txt" />', '/documentation'
-  end
 end

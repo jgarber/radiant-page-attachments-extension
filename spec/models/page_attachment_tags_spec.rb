@@ -144,14 +144,20 @@ describe "page attachment tags" do
   
   it "should render the extension" do
     page.should render(%{<r:attachment:each><r:extension/></r:attachment:each>}).as("pngtxt")
-  end 
+  end
   
+  
+  it "should render an attachment inherited from the parent" do
+    child_page = pages(:first)
+    child_page.should render('<r:attachment:url name="rails.png" />').as(img.public_filename)
+    child_page.should render('<r:attachment:url name="foo.txt" />').as(txt.public_filename)
+  end
   
   private
 
     def page(symbol = nil)
       if symbol.nil?
-        @page ||= pages(:first)
+        @page ||= pages(:home)
       else
         @page = pages(symbol)
       end
