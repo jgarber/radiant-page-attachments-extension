@@ -26,20 +26,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
     #assert_equal UserActionObserver.instance.observed_class, [User, Page, Layout, Snippet, Asset]
   end
 
-  def test_page_instance_methods
-    assert Page.instance_methods.include?("attachments")
-    assert Page.instance_methods.include?("attachments=")
-    assert Page.instance_methods.include?("attachment")
-    assert Page.instance_methods.include?("add_attachments")
-    assert Page.instance_methods.include?("add_attachments=")
-    assert Page.instance_methods.include?("save_attachments")
-
-    assert Page.instance_methods.include?("tag:attachment")
-    [:content_type, :size, :width, :height, :date, :image, :link, :author, :title, :short_title, :short_description, :short_filename, :description, :position].each do |key|
-      assert Page.instance_methods.include?("tag:attachment:#{key}")
-    end
-  end
-
   def test_global_tags
     img = page_attachments(:rails_png)
     txt = page_attachments(:foo_txt)
