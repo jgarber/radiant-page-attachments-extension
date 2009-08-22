@@ -105,6 +105,14 @@ describe "page attachment tags" do
     page.should render('<r:attachment:image name="foo.txt" />').with_error("attachment is not an image.")
   end
   
+  it "should render the contents for each attachment" do
+    page.should render("<r:attachment:each>* </r:attachment:each>").as("* * ")
+  end
+  it "should render contained tags for each attachment" do
+    page.should render(%{<r:attachment:each by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{txt.public_filename}">foo.txt</a><a href="#{img.public_filename}">rails.png</a>})
+  end
+  
+  
   
   private
 

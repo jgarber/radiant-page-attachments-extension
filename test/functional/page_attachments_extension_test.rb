@@ -37,15 +37,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
           assert_equal 1, txt.position
   end
 
-  def test_iteration
-    img = page_attachments(:rails_png)
-    txt = page_attachments(:foo_txt)
-
-    assert_renders "* * ", "<r:attachment:each>* </r:attachment:each>", '/'
-    assert_renders %{<a href="#{txt.public_filename}">foo.txt</a><a href="#{img.public_filename}">rails.png</a>},
-                  %{<r:attachment:each by="filename"><r:link/></r:attachment:each>}, '/'
-  end
-
   def test_limit_offset
     img = page_attachments(:rails_png)
     txt = page_attachments(:foo_txt)
