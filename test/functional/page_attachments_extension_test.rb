@@ -30,22 +30,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
     img = page_attachments(:rails_png)
     txt = page_attachments(:foo_txt)
 
-    assert_renders "", "<r:attachment></r:attachment>", "/"
-    assert_renders img.public_filename, '<r:attachment:url name="rails.png" />', '/'
-    assert_renders img.title, '<r:attachment:title name="rails.png" />', '/'
-    assert_renders img.content_type, '<r:attachment:content_type name="rails.png" />', '/'
-
-    assert_renders img.size.to_s, '<r:attachment:size name="rails.png" />', '/'
-    assert_renders img.size.to_s, '<r:attachment:size name="rails.png" units="blargobytes" />', '/'
-    assert_renders "1.75", '<r:attachment:size name="rails.png" units="kilobytes" />', '/'
-
-    assert_renders img.width.to_s, '<r:attachment:width name="rails.png" />', '/'
-    assert_renders img.height.to_s, '<r:attachment:height name="rails.png" />', '/'
-    assert_renders img.content_type, '<r:attachment:content_type name="rails.png" />', '/'
-    assert_renders img.created_at.strftime("%Y-%m-%d"), '<r:attachment:date name="rails.png" format="%Y-%m-%d" />', '/'
-    assert_renders img.created_by.name, '<r:attachment:author name="rails.png" />', '/'
-        assert_renders "", '<r:attachment:height name="foo.txt"/>','/'
-        assert_renders "", '<r:attachment:width name="foo.txt"/>','/'
 
     assert_renders %{<img src="#{img.public_filename}" />}, '<r:attachment:image name="rails.png" />', '/'
     assert_renders %{<img src="#{img.public_filename}" style="float: right;" />}, '<r:attachment:image name="rails.png" style="float: right;"/>', '/'

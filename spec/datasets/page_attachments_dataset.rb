@@ -3,7 +3,7 @@ class PageAttachmentsDataset < Dataset::Base
   
   def load
     create_page_attachment "rails.png", :title => "Rails Logo", :content_type => "image/png", :width => 50, :height => 64, :description => "The awesome Rails logo."
-    create_page_attachment "foo.txt", :title => "Simple text file", :content_type => "text/plain", :width => 50, :height => 64, :description => "Nice shootin', text."
+    create_page_attachment "foo.txt", :title => "Simple text file", :content_type => "text/plain", :description => "Nice shootin', text."
   end
   
   helpers do
