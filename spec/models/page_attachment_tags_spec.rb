@@ -124,6 +124,14 @@ describe "page attachment tags" do
   it "should render the contents for each attachment with offset and order column" do
     page.should render(%{<r:attachment:each offset="1" by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{img.public_filename}">rails.png</a>})
   end
+
+  it "should filter attachments by extension" do
+    page.should render(%{<r:attachment:each extensions="png"><r:filename/></r:attachment:each>}).as("rails.png")
+  end
+  it "should filter attachments by multiple extensions" do
+    page.should render(%{<r:attachment:each extensions="png|txt"><r:filename/></r:attachment:each>}).as("rails.pngfoo.txt")
+  end
+  
   
   private
 
