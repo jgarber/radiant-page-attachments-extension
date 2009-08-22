@@ -30,10 +30,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
     img = page_attachments(:rails_png)
     txt = page_attachments(:foo_txt)
 
-    [:url, :content_type, :size, :width, :height, :date, :image, :link, :author, :title].each do |key|
-      assert_render_error "'name' attribute required", "<r:attachment:#{key} />", '/'
-    end
-
     assert_renders "", "<r:attachment></r:attachment>", "/"
     assert_renders img.public_filename, '<r:attachment:url name="rails.png" />', '/'
     assert_renders img.title, '<r:attachment:title name="rails.png" />', '/'
