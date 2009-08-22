@@ -112,7 +112,18 @@ describe "page attachment tags" do
     page.should render(%{<r:attachment:each by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{txt.public_filename}">foo.txt</a><a href="#{img.public_filename}">rails.png</a>})
   end
   
-  
+  it "should render the contents for each attachment with offset and limit" do
+    page.should render(%{<r:attachment:each limit="1" offset="1" by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{img.public_filename}">rails.png</a>})
+  end
+  it "should render the contents for each attachment with limit, offset, and order column" do
+    page.should render(%{<r:attachment:each limit="1" offset="0" by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{txt.public_filename}">foo.txt</a>})
+  end
+  it "should render the contents for each attachment with limit and order column" do
+    page.should render(%{<r:attachment:each limit="1" by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{txt.public_filename}">foo.txt</a>})
+  end
+  it "should render the contents for each attachment with offset and order column" do
+    page.should render(%{<r:attachment:each offset="1" by="filename"><r:link/></r:attachment:each>}).as(%{<a href="#{img.public_filename}">rails.png</a>})
+  end
   
   private
 

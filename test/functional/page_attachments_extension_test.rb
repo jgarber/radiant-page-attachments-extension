@@ -37,20 +37,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
           assert_equal 1, txt.position
   end
 
-  def test_limit_offset
-    img = page_attachments(:rails_png)
-    txt = page_attachments(:foo_txt)
-
-    assert_renders %{<a href="#{img.public_filename}">rails.png</a>},
-                  %{<r:attachment:each limit="1" offset="1" by="filename"><r:link/></r:attachment:each>}, '/'
-    assert_renders %{<a href="#{txt.public_filename}">foo.txt</a>},
-                  %{<r:attachment:each limit="1" offset="0" by="filename"><r:link/></r:attachment:each>}, '/'
-    assert_renders %{<a href="#{txt.public_filename}">foo.txt</a>},
-                  %{<r:attachment:each limit="1" by="filename"><r:link/></r:attachment:each>}, '/'
-    assert_renders %{<a href="#{img.public_filename}">rails.png</a>},
-                  %{<r:attachment:each offset="1" by="filename"><r:link/></r:attachment:each>}, '/'
-  end
-
   def test_attachment_inheritance
     @page = pages(:documentation)
     img = page_attachments(:rails_png)
