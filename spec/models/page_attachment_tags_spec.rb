@@ -142,6 +142,10 @@ describe "page attachment tags" do
     page.should render(%{<r:if_attachments min_count="1" extensions="png">content</r:if_attachments>}).as("content")
   end
   
+  it "should render the extension" do
+    page.should render(%{<r:attachment:each><r:extension/></r:attachment:each>}).as("pngtxt")
+  end 
+  
   
   private
 
