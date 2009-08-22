@@ -18,9 +18,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
   def test_module_inclusion
         assert ActiveRecord::Base.included_modules.include?(ActiveRecord::Acts::List)
         assert Technoweenie::AttachmentFu
-
-    assert UserActionObserver.methods.include?('observed_class')
-    #assert_equal UserActionObserver.instance.observed_class, [User, Page, Layout, Snippet, Asset]
   end
 
 end
