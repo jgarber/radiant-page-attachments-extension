@@ -16,8 +16,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
   end
 
   def test_module_inclusion
-    assert Page.included_modules.include?(PageAttachmentTags)
-    assert Page.included_modules.include?(PageAttachmentAssociations)
     assert UserActionObserver.included_modules.include?(ObservePageAttachments)
         assert ActiveRecord::Base.included_modules.include?(ActiveRecord::Acts::List)
         assert Technoweenie::AttachmentFu

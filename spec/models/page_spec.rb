@@ -2,9 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Page, 'page attachments' do
   dataset :pages, :page_attachments
-
-  before :each do
-    @page = pages(:first)
+  
+  it "should include page attachment modules" do
+    Page.included_modules.should include(PageAttachmentTags)
+    Page.included_modules.should include(PageAttachmentAssociations)
   end
   
   it "should have attachment methods" do
