@@ -26,36 +26,6 @@ class PageAttachmentsExtensionTest < Test::Unit::TestCase
     #assert_equal UserActionObserver.instance.observed_class, [User, Page, Layout, Snippet, Asset]
   end
 
-  def test_global_tags
-    img = page_attachments(:rails_png)
-    txt = page_attachments(:foo_txt)
-
-
-    assert_renders %{<img src="#{img.public_filename}" />}, '<r:attachment:image name="rails.png" />', '/'
-    assert_renders %{<img src="#{img.public_filename}" style="float: right;" />}, '<r:attachment:image name="rails.png" style="float: right;"/>', '/'
-
-    assert_renders %{<a href="#{img.public_filename}">rails.png</a>}, '<r:attachment:link name="rails.png" />', '/'
-    assert_renders %{<a href="#{img.public_filename}" id="mylink">rails.png</a>}, '<r:attachment:link name="rails.png" id="mylink" />', '/'
-    assert_renders %{<a href="#{img.public_filename}">Rails</a>}, '<r:attachment:link name="rails.png">Rails</r:attachment:link>', '/'
-    assert_renders %{<a href="#{img.public_filename}">Rails</a>}, '<r:attachment:link name="rails.png" label="Rails"/>', '/'
-
-        assert_renders %{Rails logo},'<r:attachment:title name="rails.png"/>','/'
-        assert_renders %{Rails logo},'<r:attachment:short_title name="rails.png"/>','/'
-        assert_renders %{The awesome Rails logo.},'<r:attachment:description name="rails.png"/>','/'
-
-        assert_renders %{The awesome ...},'<r:attachment:short_description name="rails.png"/>','/'
-        assert_renders %{The aweso ...},'<r:attachment:short_description name="rails.png" length="13" />','/'
-        assert_renders %{The awesome Rails logo.}, '<r:attachment:short_description name="rails.png" length="35" />','/'
-
-        assert_renders %{The awesome....}, '<r:attachment:short_description name="rails.png" length="15" suffix="...." />','/'
-
-        assert_renders %{rails.png},'<r:attachment:filename name="rails.png"/>','/'
-        assert_renders %{rails.png},'<r:attachment:short_filename name="rails.png"/>','/'
-        assert_renders %{rails...},'<r:attachment:short_filename name="rails.png" suffix="..." length="8" />','/'
-
-    assert_render_error "attachment is not an image.", '<r:attachment:image name="foo.txt" />', '/'
-  end
-
   def test_positions
           img = page_attachments(:rails_png)
           txt = page_attachments(:foo_txt)

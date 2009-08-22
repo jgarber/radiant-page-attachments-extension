@@ -51,6 +51,61 @@ describe "page attachment tags" do
     page.should render('<r:attachment:width name="foo.txt"/>').as("")
   end
   
+  it "should render image tag" do
+    page.should render('<r:attachment:image name="rails.png" />').as(%{<img src="#{img.public_filename}" />})
+  end
+  it "should render image tag with HTML attributes" do
+    page.should render('<r:attachment:image name="rails.png" style="float: right;"/>').as(%{<img src="#{img.public_filename}" style="float: right;" />})
+  end
+  it "should render link tag" do
+    page.should render('<r:attachment:link name="rails.png" />').as(%{<a href="#{img.public_filename}">rails.png</a>})
+  end
+  it "should render link tag with HTML attributes" do
+    page.should render('<r:attachment:link name="rails.png" id="mylink" />').as(%{<a href="#{img.public_filename}" id="mylink">rails.png</a>})
+  end
+  it "should render link tag" do
+    page.should render('<r:attachment:link name="rails.png">Rails</r:attachment:link>').as(%{<a href="#{img.public_filename}">Rails</a>})
+  end
+  it "should render link tag with HTML attributes" do
+    page.should render('<r:attachment:link name="rails.png" label="Rails"/>').as(%{<a href="#{img.public_filename}">Rails</a>})
+  end
+  
+  it "should render the title" do
+    page.should render('<r:attachment:title name="rails.png"/>').as(%{Rails logo})
+  end
+  it "should render the short title" do
+    page.should render('<r:attachment:short_title name="rails.png"/>').as(%{Rails logo})
+  end
+  it "should render the description" do
+    page.should render('<r:attachment:description name="rails.png"/>').as(%{The awesome Rails logo.})
+  end
+  it "should render the short description" do
+    page.should render('<r:attachment:short_description name="rails.png"/>').as(%{The awesome ...})
+  end
+  it "should render the short description at the specified length" do
+    page.should render('<r:attachment:short_description name="rails.png" length="13" />').as(%{The aweso ...})
+  end
+  it "should render the short description at a length greater than the description length" do
+    page.should render('<r:attachment:short_description name="rails.png" length="35" />').as(%{The awesome Rails logo.})
+  end
+  it "should render the short description with a custom length and suffix" do
+    page.should render('<r:attachment:short_description name="rails.png" length="15" suffix="...." />').as(%{The awesome....})
+  end
+  it "should render the filename" do
+    page.should render('<r:attachment:filename name="rails.png"/>').as(%{rails.png})
+  end
+  it "should render the short filename" do
+    page.should render('<r:attachment:short_filename name="rails.png"/>').as(%{rails.png})
+  end
+  it "should render the short filename with a custom length and suffix" do
+    page.should render('<r:attachment:short_filename name="rails.png" suffix="..." length="8" />').as(%{rails...})
+  end
+
+  it "should render error when image tag used on non-image" do
+    page.should render('<r:attachment:image name="foo.txt" />').with_error("attachment is not an image.")
+  end
+  
+  
   private
 
     def page(symbol = nil)
