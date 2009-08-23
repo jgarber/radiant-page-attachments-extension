@@ -1,4 +1,5 @@
 <li id="attachment_<%= attachment.id %>" class="attachment clearfix">
+<%= hidden_field_tag "page[attachments_attributes][#{attachment_counter}][_delete]", "0" %>
 <div>
   <%= image_tag "admin/minus.png", :alt => "Delete", :class => 'delete' %>
   <% unless attachment.first? %>
