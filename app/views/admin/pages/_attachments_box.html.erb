@@ -4,12 +4,18 @@
   </div>
   <h3>Attachments (<span id="attachment_count"><%= @page.attachments.count %></span>)</h3>
 
-  <%= javascript_tag "var auth_token = '#{form_authenticity_token}';" %>
   <% unless @page.attachments.count.zero? %>
-  <ol id="attachment_list">
-    <%= render :partial => 'attachment', :collection => @page.attachments %>
-  </ol>
-  <div style="clear:both;"></div>
+    <ol id="attachment_list">
+      <%= render :partial => 'attachment', :collection => @page.attachments %>
+    </ol>
+    <div style="clear:both;"></div>
   <% end %>
-  <p id="reorder_notice" style="display:none;">Page attachments order will appear on site only when cache is cleared (on save or after 5min).</p>
+  
+  <div class="attachment-upload" style="display:none;">
+    <p class="title">Upload file</p>
+    <table>
+      <tr><th><label for="title_input">Title:</label></th><td><input id="title_input" size="60" name="page[add_attachments][title][]"></td></tr>
+      <tr><th><label for="description_input">Description:</label></th><td><input id="description_input" type="text" size="60"  name="page[add_attachments][description][]"></td></tr>
+      <tr><th><label for="file_input">File:</label></th><td><input id="file_input" type="file" size="60" name="page[add_attachments][file][]" /><img src="/images/admin/minus.png" alt="cancel" /></td></tr></table>
+  </div>
 </div>
