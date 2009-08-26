@@ -27,6 +27,10 @@ Attachment thumbnails for images default to `:icon => '50x50>'`. You can customi
 
 Restart your server and refresh the admin interface.
 
+Running features and specs
+---
+The Cucumber features use Webrat and Selenium.  You'll need the webrat 0.5.1 and selenium-client 1.2.16 gems installed and you'll need to change the version of webrat specified in environments/test.rb.
+
 Managing Attachments
 ---
 
