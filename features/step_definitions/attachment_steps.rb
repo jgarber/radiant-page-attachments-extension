@@ -17,13 +17,16 @@ Given /^I have a page with (\d+) attachments$/ do |number|
 end
 
 Given /^I have a page with no attachments$/ do
-  Given "I have a page"
-  @page.attachments.destroy_all
-  @page.reload.attachments.should be_empty
+  @page = pages(:first)
+  @page.attachments.should be_empty
 end
 
 When /^I edit the page$/ do
   visit edit_admin_page_path(@page)
+end
+
+When /^I click the plus icon$/ do
+  selenium.click "xpath=id('attachments')//img[@alt='Add']"
 end
 
 When /^I attach the Rails logo$/ do
@@ -31,7 +34,7 @@ When /^I attach the Rails logo$/ do
 end
 
 When /^I delete the first attachment$/ do
-  set_hidden_field "page[attachments_attributes][1][_delete]", "1"
+  selenium.click "xpath=id('attachment_list')/li[1]//img[@alt='Delete']"
 end
 
 When /^I save$/ do

@@ -9,11 +9,21 @@ raise "Update the version of Webrat you specify in test.rb." if Webrat.const_def
 
 Webrat.configure do |config|
   config.mode = :selenium
+  config.selenium_browser_key = "*chrome"
 end
 
 # this is necessary to have webrat "wait_for" the response body to be available
 # when writing steps that match against the response body returned by selenium
 World(Webrat::Selenium::Matchers)
+
+# Patch in attach_file functionality
+module Webrat
+  class SeleniumSession
+    def attach_file(field_locator, path, content_type = nil)
+      fill_in(field_locator, :with => path)
+    end
+  end
+end
 
 require 'cucumber/rails/rspec'
 require 'dataset'
