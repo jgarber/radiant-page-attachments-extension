@@ -22,7 +22,7 @@ document.observe("dom:loaded", function() {
         var attachment = e.findElement('.attachment');
         attachment.addClassName('deleted');
         attachment.down('img.delete').hide();
-        attachment.insert("<em>Attachment will be deleted when the page is saved.</em>");
+        attachment.insert("<em>Attachment will be deleted when page is saved.</em>");
         attachment.down('input[name*="_delete"]').setValue('true');
       }
     })
