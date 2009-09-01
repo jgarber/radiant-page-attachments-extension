@@ -33,3 +33,10 @@ Feature: attachments
     And I delete the first attachment
     And I save
     Then the page should have 1 attachment
+  
+  Scenario: reorder attachments
+    Given I have a page with 2 attachments
+    When I edit the page
+    And I drag attachment 2 above attachment 1
+    And I save
+    Then attachment 2 should be in position 1

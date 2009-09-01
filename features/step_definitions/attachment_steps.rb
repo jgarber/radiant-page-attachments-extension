@@ -37,6 +37,12 @@ When /^I delete the first attachment$/ do
   selenium.click "xpath=id('attachment_list')/li[1]//img[@alt='Delete']"
 end
 
+When /^I drag attachment 2 above attachment 1$/ do
+  @attachment = @page.attachments[1]
+  @attachment.position.should == 2
+  selenium.dragdrop("id=attachment_#{@attachment.id}", "0, -200")
+end
+
 When /^I save$/ do
   click_button "Save"
   response.should_not contain("errors")
@@ -48,4 +54,8 @@ end
 
 Then /^the page should have (\d+) attachment(?:s)?$/ do |number|
   @page.reload.attachments.length.should == number.to_i
+end
+
+Then /^attachment 2 should be in position 1$/ do
+  @attachment.reload.position.should == 1
 end
