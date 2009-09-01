@@ -6,6 +6,9 @@ document.observe("dom:loaded", function() {
         e.down('input[name*="position"]').setValue(i+1);
       });
     }
+    when('attachment_list', function(container) {
+      Sortable.create('attachment_list', {onUpdate:updatePositions});
+    });
     container.observe('click', function(e) {
       var target = $(e.target)
 

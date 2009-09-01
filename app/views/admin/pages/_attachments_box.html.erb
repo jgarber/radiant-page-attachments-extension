@@ -10,9 +10,6 @@
       <%= render :partial => 'attachment', :collection => @page.attachments %>
     </ol>
     <div style="clear:both;"></div>
-    <script type="text/javascript">
-      Sortable.create('attachment_list', {onUpdate:updatePositions});
-    </script>
   <% end %>
   
 </div>
