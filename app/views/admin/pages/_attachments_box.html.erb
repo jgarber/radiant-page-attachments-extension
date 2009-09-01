@@ -1,6 +1,7 @@
 <div id="attachments">
   <div class="toolbar">
     <%= image_tag('admin/plus.png', :alt => 'Add') %>
+    <%= hidden_field_tag('attachment_index', @page.attachments.size, :id => 'attachment-index-field') %>
   </div>
   <h3>Attachments (<span id="attachment_count"><%= @page.attachments.count %></span>)</h3>
 
@@ -11,12 +12,4 @@
     <div style="clear:both;"></div>
   <% end %>
   
-  <div class="attachment-upload" style="display:none;">
-    <p class="title">Upload file</p>
-    <%= hidden_field_tag "page[attachments_attributes][0][_delete]", "1" %>
-    <table>
-      <tr><th><label for="title_input">Title:</label></th><td><input id="title_input" size="60" name="page[attachments_attributes][0][title]"></td></tr>
-      <tr><th><label for="description_input">Description:</label></th><td><input id="description_input" type="text" size="60"  name="page[attachments_attributes][0][description]"></td></tr>
-      <tr><th><label for="file_input">File:</label></th><td><input id="file_input" type="file" size="60" name="page[attachments_attributes][0][uploaded_data]" /><img src="/images/admin/minus.png" alt="cancel" /></td></tr></table>
-  </div>
 </div>

@@ -82,9 +82,14 @@
 {
  padding-bottom:5px;
 }
-#attachments p#reorder_notice
+#attachments li.attachment.deleted em
 {
   color:#FF0000;margin:0 0 10px 20px;
+}
+#attachments li.attachment.deleted a
+{
+  opacity:0.5;
+  text-decoration:line-through;
 }
 .clearfix:after                 {content:".";display:block;height:0;clear:both;visibility:hidden;}
 .clearfix                       {display:inline-block;}

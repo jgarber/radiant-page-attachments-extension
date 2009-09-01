@@ -36,8 +36,7 @@ end
 
 When /^I save$/ do
   click_button "Save"
-  assigns['page'].errors.should be_empty if assigns['page']
-  flash[:notice].should =~ /saved/
+  response.should_not contain("errors")
 end
 
 Then /^the page should have a new attachment$/ do
