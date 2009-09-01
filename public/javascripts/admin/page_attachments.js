@@ -23,7 +23,6 @@ document.observe("dom:loaded", function() {
       else if (target.match('img.delete')) {
         var attachment = e.findElement('.attachment');
         attachment.addClassName('deleted');
-        attachment.down('img.delete').hide();
         attachment.insert("<em>Attachment will be deleted when page is saved.</em>");
         attachment.down('input[name*="_delete"]').setValue('true');
       }
